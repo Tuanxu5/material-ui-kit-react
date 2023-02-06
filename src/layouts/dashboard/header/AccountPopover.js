@@ -1,6 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem } from '@mui/material';
@@ -9,25 +10,30 @@ import { PATH_DASHBOARD, PATH_AUTH } from '../../../routes/paths';
 // hooks
 import useAuth from '../../../hooks/useAuth';
 import useIsMountedRef from '../../../hooks/useIsMountedRef';
+
 // components
 import MyAvatar from '../../../components/MyAvatar';
 import MenuPopover from '../../../components/MenuPopover';
 import { IconButtonAnimate } from '../../../components/animate';
+import SvgIconStyle from '../../../components/SvgIconStyle';
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
+    label: 'Trang Chủ',
     linkTo: '/',
+    icon: 'ic-home-03',
   },
   {
-    label: 'Profile',
+    label: 'Thông Tin Cá Nhân',
     linkTo: PATH_DASHBOARD.user.profile,
+    icon: 'ic-users',
   },
   {
-    label: 'Settings',
+    label: 'Cài Đặt',
     linkTo: PATH_DASHBOARD.user.account,
+    icon: 'ic-setting',
   },
 ];
 
@@ -74,6 +80,7 @@ export default function AccountPopover() {
           p: 0,
           ...(open && {
             '&:before': {
+              fontWeight: '600',
               zIndex: 1,
               content: "''",
               width: '100%',
@@ -93,6 +100,7 @@ export default function AccountPopover() {
         anchorEl={open}
         onClose={handleClose}
         sx={{
+          fontWeight: '600',
           p: 0,
           mt: 1.5,
           ml: 0.75,
@@ -103,28 +111,36 @@ export default function AccountPopover() {
         }}
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
-          <Typography variant="subtitle2" noWrap>
+          <Typography variant="subtitle2" noWrap sx={{ fontSize: '15px' }}>
             {user?.displayName}
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
+          <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '13px' }} noWrap>
             {user?.email}
           </Typography>
         </Box>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <Stack sx={{ p: 1 }}>
+        <Stack sx={{ p: 1, fontSize: '13px' }}>
           {MENU_OPTIONS.map((option) => (
             <MenuItem key={option.label} to={option.linkTo} component={RouterLink} onClick={handleClose}>
-              {option.label}
+              <SvgIconStyle
+                src={`/icons/DashBoard/Header/${option.icon}.svg`}
+                sx={{ width: '15px', height: '15px', marginRight: '8px', fontWeight: 400 }}
+              />
+              <div className="text-[13px]">{option.label}</div>
             </MenuItem>
           ))}
         </Stack>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
-          Logout
+        <MenuItem onClick={handleLogout} sx={{ m: 1, fontSize: '13px' }}>
+          <SvgIconStyle
+            src={`/icons/DashBoard/Header/ic-logout.svg`}
+            sx={{ width: '15px', height: '15px', marginRight: '8px', fontWeight: 400 }}
+          />
+          <div className="text-[13px]">Đăng Xuất</div>
         </MenuItem>
       </MenuPopover>
     </>

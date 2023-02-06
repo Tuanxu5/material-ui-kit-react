@@ -13,6 +13,7 @@ export const ListItemStyle = styled(ListItemButton, {
   position: 'relative',
   height: NAVBAR.DASHBOARD_ITEM_ROOT_HEIGHT,
   textTransform: 'capitalize',
+  fontWeight: '600',
   paddingLeft: theme.spacing(2),
   paddingRight: theme.spacing(1.5),
   marginBottom: theme.spacing(0.5),

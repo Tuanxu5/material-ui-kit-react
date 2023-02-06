@@ -58,8 +58,7 @@ export default function LanguagePopover() {
               }}
             >
               <Image disabledEffect alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
-
-              {option.label}
+              <div className="font-[600]">{option.label}</div>
             </MenuItem>
           ))}
         </Stack>

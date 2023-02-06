@@ -5,15 +5,15 @@ import { Tooltip } from '@mui/material';
 // utils
 import cssStyles from '../../utils/cssStyles';
 //
-import Iconify from '../Iconify';
 import { IconButtonAnimate } from '../animate';
+import SvgIconStyle from '../SvgIconStyle';
 
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('span')(({ theme }) => ({
   ...cssStyles(theme).bgBlur({ opacity: 0.64 }),
   right: '20px',
-  bottom: '5%',
+  bottom: '20px',
   position: 'fixed',
   marginTop: theme.spacing(-3),
   padding: theme.spacing(0.5),
@@ -48,7 +48,7 @@ export default function ToggleButton({ notDefault, open, onToggle }) {
     <RootStyle>
       {notDefault && !open && <DotStyle />}
 
-      <Tooltip title="Settings" placement="left">
+      <Tooltip title="Cài Đặt" placement="left">
         <IconButtonAnimate
           color="primary"
           onClick={onToggle}
@@ -61,7 +61,7 @@ export default function ToggleButton({ notDefault, open, onToggle }) {
             },
           }}
         >
-          <Iconify icon="eva:options-2-fill" width={20} height={20} />
+          <SvgIconStyle src={`/icons/ic_setting.svg`} sx={{ width: '24px', height: '24px' }} />
         </IconButtonAnimate>
       </Tooltip>
     </RootStyle>
